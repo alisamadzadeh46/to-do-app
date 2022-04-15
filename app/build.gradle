@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id "dagger.hilt.android.plugin"
 }
 
 android {
@@ -43,9 +45,15 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
+    var roomVersion = "2.4.2"
+    var dataStore = "1.0.0"
+    var hilt = "2.38.1"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation "androidx.compose.ui:ui:$compose_version"
@@ -58,4 +66,17 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+
+    // Room components
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+
+    // Datastore Preferences
+    implementation "androidx.datastore:datastore-preferences:$dataStore"
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:$hilt"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt"
+
 }

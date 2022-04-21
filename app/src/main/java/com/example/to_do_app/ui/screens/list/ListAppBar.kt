@@ -10,6 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.to_do_app.ui.theme.topAppBarBackgroundColor
 import com.example.to_do_app.ui.theme.topAppBarContentColor
 import com.example.to_do_app.R
+import com.example.to_do_app.data.models.Priority
 
 @Composable
 fun ListAppBar() {
@@ -60,6 +61,13 @@ fun SearchAction(
     }
 }
 
+
+@Composable
+fun SortAction(
+    onSortClicked: (Priority) -> Unit
+) {
+
+}
 
 @Composable
 @Preview

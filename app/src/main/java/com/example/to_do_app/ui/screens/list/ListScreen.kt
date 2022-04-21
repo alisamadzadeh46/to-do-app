@@ -20,7 +20,8 @@ fun ListScreen(
     Scaffold(
         topBar = {
             DefaultListAppBar(
-                onSearchClicked = {}
+                onSearchClicked = {},
+                onSortClicked = {}
             )
         },
         content = {},

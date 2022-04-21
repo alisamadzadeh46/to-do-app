@@ -17,6 +17,7 @@ import com.example.to_do_app.ui.theme.topAppBarContentColor
 import com.example.to_do_app.R
 import com.example.to_do_app.components.PriorityItem
 import com.example.to_do_app.data.models.Priority
+import com.example.to_do_app.ui.theme.Typography
 
 @Composable
 fun ListAppBar() {
@@ -89,7 +90,8 @@ fun SortAction(
             painterResource(
                 id = R.drawable.ic_filter_list
             ),
-            contentDescription = stringResource(id = R.string.sort_tasks)
+            contentDescription = stringResource(id = R.string.sort_tasks),
+            tint = MaterialTheme.colors.topAppBarContentColor
         )
         DropdownMenu(expanded = expanded,
             onDismissRequest = { expanded = false }
@@ -121,12 +123,46 @@ fun SortAction(
 }
 
 @Composable
+fun DeleteAllAction(
+    onDeleteClicked: () -> Unit
+) {
+    var expanded by remember { mutableStateOf(false) }
+    IconButton(
+        onClick = { expanded = true }
+    ) {
+
+        Icon(
+            painter =
+            painterResource(
+                id = R.drawable.ic_filter_list
+            ),
+            contentDescription = stringResource(id = R.string.sort_tasks),
+            tint = MaterialTheme.colors.topAppBarContentColor
+        )
+        DropdownMenu(expanded = expanded,
+            onDismissRequest = { expanded = false }
+        )
+        {
+            DropdownMenuItem(
+                onClick = {
+                    expanded = false
+                    onDeleteClicked()
+                }) {
+                Text(
+                    text = stringResource(id = R.string.delete_all_action),
+                    style = Typography.subtitle2
+                )
+
+            }
+        }
+    }
+}
+
+@Composable
 @Preview
 private fun DefaultListAppBarPreview() {
     DefaultListAppBar(
-        onSearchClicked = {
-
-        },
+        onSearchClicked = {},
         onSortClicked = {}
     )
 }

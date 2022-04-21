@@ -23,21 +23,26 @@ fun ListAppBar() {
     DefaultListAppBar(
         onSearchClicked = {
 
-        }
+        },
+        onSortClicked = {}
     )
 }
 
 
 @Composable
 fun DefaultListAppBar(
-    onSearchClicked: () -> Unit
+    onSearchClicked: () -> Unit,
+    onSortClicked: (Priority) -> Unit
 ) {
     TopAppBar(
         title = {
             Text(text = "Tasks", color = MaterialTheme.colors.topAppBarContentColor)
         },
         actions = {
-            ListAppBarActions(onSearchClicked = onSearchClicked)
+            ListAppBarActions(
+                onSearchClicked = onSearchClicked,
+                onSortClicked = onSortClicked
+            )
         },
         backgroundColor = MaterialTheme.colors.topAppBarBackgroundColor
 
@@ -49,9 +54,11 @@ fun DefaultListAppBar(
 
 @Composable
 fun ListAppBarActions(
-    onSearchClicked: () -> Unit
+    onSearchClicked: () -> Unit,
+    onSortClicked: (Priority) -> Unit
 ) {
     SearchAction(onSearchClicked = onSearchClicked)
+    SortAction(onSortClicked = onSortClicked)
 }
 
 @Composable
@@ -101,7 +108,8 @@ fun SortAction(
                 PriorityItem(priority = Priority.HIGH)
             }
             DropdownMenuItem(
-                onClick = { expanded = false
+                onClick = {
+                    expanded = false
                     onSortClicked(Priority.NONE)
                 }) {
                 PriorityItem(priority = Priority.NONE)
@@ -118,6 +126,7 @@ private fun DefaultListAppBarPreview() {
     DefaultListAppBar(
         onSearchClicked = {
 
-        }
+        },
+        onSortClicked = {}
     )
 }

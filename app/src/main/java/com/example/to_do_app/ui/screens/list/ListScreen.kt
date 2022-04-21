@@ -19,7 +19,7 @@ fun ListScreen(
     Scaffold(
         content = {},
         floatingActionButton = {
-            ListFab(navigateToTaskScreen = navigateToTaskScreen)
+            ListFab(onFabClicked = navigateToTaskScreen)
         }
     )
 
@@ -28,10 +28,11 @@ fun ListScreen(
 
 @Composable
 fun ListFab(
-    navigateToTaskScreen: (Int) -> Unit
+    onFabClicked: (Int) -> Unit
 ) {
     FloatingActionButton(onClick = {
-        navigateToTaskScreen(-1)
+        onFabClicked(-1)
+
     }) {
         Icon(
             imageVector = Icons.Filled.Add,

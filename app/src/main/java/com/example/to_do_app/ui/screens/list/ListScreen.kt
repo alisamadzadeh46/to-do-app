@@ -21,7 +21,8 @@ fun ListScreen(
         topBar = {
             DefaultListAppBar(
                 onSearchClicked = {},
-                onSortClicked = {}
+                onSortClicked = {},
+                onDeleteClicked = {}
             )
         },
         content = {},

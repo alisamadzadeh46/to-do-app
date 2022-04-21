@@ -6,13 +6,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.to_do_app.data.models.Priority
+import com.example.to_do_app.ui.theme.LARGE_PADDING
+import com.example.to_do_app.ui.theme.PRIORITY_INDICATOR_SIZE
 import com.example.to_do_app.ui.theme.Typography
 
 @Composable
@@ -22,11 +23,11 @@ fun PriorityItem(
     Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Canvas(modifier = Modifier.size(16.dp)) {
+        Canvas(modifier = Modifier.size(PRIORITY_INDICATOR_SIZE)) {
             drawCircle(color = priority.color)
         }
         Text(
-            modifier = Modifier.padding(start = 12.dp),
+            modifier = Modifier.padding(start = LARGE_PADDING),
             text = priority.name,
             style = Typography.subtitle1,
             color = MaterialTheme.colors.onSurface

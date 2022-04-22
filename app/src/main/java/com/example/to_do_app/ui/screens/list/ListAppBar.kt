@@ -29,14 +29,35 @@ import com.example.to_do_app.R
 import com.example.to_do_app.components.PriorityItem
 import com.example.to_do_app.data.models.Priority
 import com.example.to_do_app.ui.theme.*
+import com.example.to_do_app.ui.viewmodels.SharedViewModel
+import com.example.to_do_app.util.SearchAppBarState
 
 @Composable
-fun ListAppBar() {
-    DefaultListAppBar(
-        onSearchClicked = {},
-        onSortClicked = {},
-        onDeleteClicked = {}
-    )
+fun ListAppBar(
+    sharedViewModel: SharedViewModel,
+    searchAppBarState: SearchAppBarState,
+    searchTextState: String
+) {
+    when (searchAppBarState) {
+        SearchAppBarState.CLOSED -> {
+            DefaultListAppBar(
+                onSearchClicked = {},
+                onSortClicked = {},
+                onDeleteClicked = {}
+            )
+        }
+        else -> {
+            SearchAppBar(
+                text = "",
+                onTextChange = {},
+                onCloseClicked = { },
+                onSearchClicked = {}
+            )
+        }
+
+
+    }
+
 }
 
 

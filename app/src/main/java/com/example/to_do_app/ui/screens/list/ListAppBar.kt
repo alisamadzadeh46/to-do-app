@@ -6,8 +6,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.to_do_app.R
 import com.example.to_do_app.components.PriorityItem
@@ -177,7 +181,7 @@ fun SearchAppBar(
     text: String,
     onTextChange: (String) -> Unit,
     onCloseClicked: () -> Unit,
-    onSearchClicked: () -> Unit,
+    onSearchClicked: (String) -> Unit,
 ) {
     Surface(
         modifier = Modifier
@@ -195,6 +199,8 @@ fun SearchAppBar(
             },
             placeholder = {
                 Text(
+                    modifier = Modifier
+                        .alpha(ContentAlpha.medium),
                     text = "Search",
                     color = Color.White
                 )
@@ -217,7 +223,35 @@ fun SearchAppBar(
                         tint = MaterialTheme.colors.topAppBarContentColor
                     )
                 }
-            }
+            },
+            trailingIcon = {
+                IconButton(
+                    onClick = {
+                        onCloseClicked()
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Close,
+                        contentDescription = "Close Icon",
+                        tint = MaterialTheme.colors.topAppBarContentColor,
+                    )
+                }
+            },
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Search
+            ),
+            keyboardActions = KeyboardActions(
+                onSearch = {
+                    onSearchClicked(text)
+                }
+            ),
+            colors = TextFieldDefaults.textFieldColors(
+                cursorColor = MaterialTheme.colors.topAppBarContentColor,
+                focusedIndicatorColor = Color.Transparent,
+                disabledIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                backgroundColor = Color.Transparent,
+            )
         )
 
     }

@@ -49,13 +49,18 @@ fun TaskItem(
         ) {
             Row {
                 Text(
+                    modifier = Modifier.weight(8f),
                     text = toDoTask.title,
                     color = MaterialTheme.colors.taskItemTextColor,
                     style = MaterialTheme.typography.h5,
                     fontWeight = FontWeight.Bold,
                     maxLines = 1
                 )
-                Box(modifier = Modifier.fillMaxWidth()) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+                ) {
                     Canvas(
                         modifier = Modifier
                             .width(PRIORITY_INDICATOR_SIZE)
@@ -87,6 +92,11 @@ fun TaskItem(
 @Preview
 fun TaskItemPreview() {
     TaskItem(
-        toDoTask = ToDoTask(0, "Title", "test", Priority.MEDIUM),
+        toDoTask = ToDoTask(
+            0,
+            "Title",
+            "test",
+            Priority.MEDIUM
+        ),
         navigateToTaskScreen = {})
 }

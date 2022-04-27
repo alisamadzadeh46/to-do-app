@@ -26,4 +26,6 @@
     <string name="back_arrow">Back Arrow</string>
 
     <string name="add_arrow">Add Arrow</string>
+
+    <string name="delete_icon">Delete Icon</string>
 </resources>

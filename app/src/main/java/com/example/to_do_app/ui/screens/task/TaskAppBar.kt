@@ -7,14 +7,17 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.to_do_app.ui.theme.topAppBarBackgroundColor
 import com.example.to_do_app.ui.theme.topAppBarContentColor
 import com.example.to_do_app.util.Action
 import com.example.to_do_app.R
 
 @Composable
-fun TaskAppBar() {
-
+fun TaskAppBar(
+    navigateToListScreen: (Action) -> Unit
+) {
+    NewTaskAppBar(navigateToListScreen = navigateToListScreen)
 }
 
 
@@ -77,4 +80,13 @@ fun AddAction(
         )
 
     }
+}
+
+
+@Composable
+@Preview
+fun NewTaskAppBarPreview() {
+    NewTaskAppBar(
+        navigateToListScreen = {}
+    )
 }

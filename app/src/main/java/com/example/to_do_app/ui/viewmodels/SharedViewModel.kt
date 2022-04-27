@@ -33,6 +33,7 @@ class SharedViewModel @Inject constructor(
     fun getAllTasks() {
         _allTasks.value = RequestState.Loading
         try {
+
             viewModelScope.launch {
                 repository.getAllTasks.collect {
                     _allTasks.value = RequestState.Success(it)

@@ -15,13 +15,23 @@ import com.example.to_do_app.ui.theme.topAppBarBackgroundColor
 import com.example.to_do_app.ui.theme.topAppBarContentColor
 import com.example.to_do_app.util.Action
 import com.example.to_do_app.R
+import com.example.to_do_app.data.models.Priority
 import com.example.to_do_app.data.models.ToDoTask
 
 @Composable
 fun TaskAppBar(
+    selectedTask: ToDoTask?,
     navigateToListScreen: (Action) -> Unit
 ) {
-    NewTaskAppBar(navigateToListScreen = navigateToListScreen)
+    if (selectedTask == null) {
+        NewTaskAppBar(navigateToListScreen = navigateToListScreen)
+    } else {
+        ExistingTaskAppBar(
+            selectedTask = selectedTask,
+            navigateToListScreen = navigateToListScreen
+        )
+    }
+
 }
 
 
@@ -105,12 +115,12 @@ fun ExistingTaskAppBar(
         },
         backgroundColor = MaterialTheme.colors.topAppBarBackgroundColor,
         actions = {
-
+            DeleteAction(onDeleteClicked = navigateToListScreen)
+            UpdateAction(onUpdateClicked = navigateToListScreen)
         }
     )
 
 }
-
 
 
 @Composable
@@ -153,11 +163,44 @@ fun DeleteAction(
 }
 
 
+@Composable
+fun UpdateAction(
+    onUpdateClicked: (Action) -> Unit
+) {
+    IconButton(
+        onClick = {
+            onUpdateClicked(Action.DELETE)
+        }
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Check,
+            contentDescription = stringResource(id = R.string.update_icon),
+            tint = MaterialTheme.colors.topAppBarContentColor
+
+        )
+
+    }
+}
+
 
 @Composable
 @Preview
 fun NewTaskAppBarPreview() {
     NewTaskAppBar(
+        navigateToListScreen = {}
+    )
+}
+
+@Composable
+@Preview
+fun ExistingTaskAppBarPreview() {
+    ExistingTaskAppBar(
+        selectedTask = ToDoTask(
+            id = 0,
+            title = "ali",
+            description = "test",
+            priority = Priority.LOW
+        ),
         navigateToListScreen = {}
     )
 }

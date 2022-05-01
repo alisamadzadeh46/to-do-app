@@ -2,10 +2,8 @@ package com.example.to_do_app.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import com.example.to_do_app.navigation.destinations.listComposable
 import com.example.to_do_app.navigation.destinations.taskComposable
 import com.example.to_do_app.ui.viewmodels.SharedViewModel
@@ -28,7 +26,8 @@ fun SetupNavigation(
             sharedViewModel = sharedViewModel
         )
         taskComposable(
-            navigateToListScreen = screen.list
+            navigateToListScreen = screen.list,
+            sharedViewModel = SharedViewModel
         )
 
 
